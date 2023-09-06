@@ -6,7 +6,7 @@
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:22:58 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/06 13:17:17 by guisanch         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:17:59 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*read_to_stash(int fd, char *stash)
 			return (NULL);
 		}
 		buffer[sz] = '\0';
+		
 		stash = ft_strjoin(stash, buffer);
 	}
 	free(buffer);
@@ -71,16 +72,18 @@ char	*ft_get_line(char *stash)
 	char	*str;
 	int		index;
 
+	index = 0;
 	if (!stash[index])
 		return (NULL);
 	while (stash[index] && stash[index] != '\n')
 		index++;
-	if (stash[index] == '\n')
-		index++;
-	str = malloc(sizeof(char) * (index + 1));
+	str = malloc(sizeof(char) * (index + 2));
 	index = 0;
 	while (stash[index] && stash[index] != '\n')
-		str[index] = stash[index++];
+	{
+		str[index] = stash[index];
+		index++;
+	}
 	if (stash[index] == '\n')
 		str[index++] = '\n';
 	str[index] = '\0';
@@ -102,6 +105,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+/*
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -113,7 +117,8 @@ int	main(void)
 	char	*line;
 	int		fd1;
 
-	fd1 = open("txt", O_RDONLY);
+	printf("Hola");
+	fd1 = open("largo.txt", O_RDONLY);
 
 	while (1)
 	{
@@ -128,6 +133,7 @@ int	main(void)
 	system("leaks -q a.out");
 	return (0);
 }
+*/
 // int main()
 // {
 //     int fd, sz;

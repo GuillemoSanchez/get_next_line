@@ -6,23 +6,23 @@
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:22:55 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/05 13:31:01 by guisanch         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:19:26 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *word, int chr)
+char	*ft_strchr(const char *word, char chr)
 {
 	char	*res;
 	int		cont;
-	char	c;
 
 	cont = 0;
-	c = chr;
+	if (!word)
+		return (0);
 	while (word[cont] != '\0')
 	{
-		if (word[cont] == c)
+		if (word[cont] == chr)
 		{
 			res = (char *)&word[cont];
 			return (res);
@@ -35,32 +35,31 @@ char	*ft_strchr(const char *word, int chr)
 	return (res);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
-	char	*string;
-
-	i = 0;
+	char	*str;
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s2)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (!str)
+		return (NULL);
+	i = -1;
 	j = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	string = malloc(ft_strlen(s1) + ft_strlen(s2) + 1 * sizeof(char));
-	if (!string)
-		return (NULL);
-	while (s1[i])
-	{
-		string[i] = s1[i];
-		i++;
-	}
+	if (s1)
+		while (s1[++i])
+			str[i] = s1[i];
 	while (s2[j])
-	{
-		string[i] = s2[j];
-		i++;
-		j++;
-	}
-	string[i] = '\0';
-	return (string);
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }
 
 size_t	ft_strlen(char const *word)
