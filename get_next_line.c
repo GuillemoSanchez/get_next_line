@@ -6,7 +6,7 @@
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:22:58 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/06 16:17:59 by guisanch         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:59:06 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*read_to_stash(int fd, char *stash)
 			return (NULL);
 		}
 		buffer[sz] = '\0';
-		
 		stash = ft_strjoin(stash, buffer);
 	}
 	free(buffer);
@@ -134,20 +133,3 @@ int	main(void)
 	return (0);
 }
 */
-// int main()
-// {
-//     int fd, sz;
-//     char* c = (char*)calloc(100, sizeof(char));
-//     fd = open("foo.txt", O_RDONLY);
-//     if (fd < 0) {
-//         perror("r1");
-//         exit(1);
-//     }
-//     sz = read(fd, c, 10);
-//     printf("called read(% d, c, 10). returned that"
-//            " %d bytes were read.\n",
-//            fd, sz);
-//     c[sz] = '\0';
-//     printf("Those bytes are as follows: % s\n", c);
-//     return 0;
-// }

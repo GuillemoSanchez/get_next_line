@@ -6,7 +6,7 @@
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:22:55 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/06 16:19:26 by guisanch         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:58:11 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 	char	*str;
+
 	if (!s1)
 	{
 		s1 = malloc(sizeof(char));
