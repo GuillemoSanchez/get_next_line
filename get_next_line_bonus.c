@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 13:22:58 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/07 12:07:52 by guisanch         ###   ########.fr       */
+/*   Created: 2023/09/07 12:17:53 by guisanch          #+#    #+#             */
+/*   Updated: 2023/09/07 12:56:08 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>	
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_to_stash(int fd, char *stash)
 {
@@ -91,38 +90,15 @@ char	*ft_get_line(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
-	stash = read_to_stash(fd, stash);
-	if (!stash)
+	stash[fd] = read_to_stash(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = ft_get_line(stash);
-	stash = ft_new_stash(stash);
+	line = ft_get_line(stash[fd]);
+	stash[fd] = ft_new_stash(stash[fd]);
 	return (line);
 }
-
-// # include <stdlib.h>
-// # include <unistd.h>
-// # include <limits.h>
-// # include <stdio.h>
-// # include <fcntl.h>
-
-// int main(){
-// 	int fd;
-// 	char *line;
-
-// 	fd = open("largo.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		printf("----->%s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	free(line);
-// 	close(fd);
-// 	return (0);
-// }
