@@ -6,7 +6,7 @@
 /*   By: guisanch <guisanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:22:58 by guisanch          #+#    #+#             */
-/*   Updated: 2023/09/07 12:07:52 by guisanch         ###   ########.fr       */
+/*   Updated: 2023/09/12 12:35:21 by guisanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,26 +103,3 @@ char	*get_next_line(int fd)
 	stash = ft_new_stash(stash);
 	return (line);
 }
-
-// # include <stdlib.h>
-// # include <unistd.h>
-// # include <limits.h>
-// # include <stdio.h>
-// # include <fcntl.h>
-
-// int main(){
-// 	int fd;
-// 	char *line;
-
-// 	fd = open("largo.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		printf("----->%s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	free(line);
-// 	close(fd);
-// 	return (0);
-// }
